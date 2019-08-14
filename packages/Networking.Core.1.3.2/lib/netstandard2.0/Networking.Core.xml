@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Networking.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Networking.Bits">
+            <summary>
+            bit操作
+            </summary>
+        </member>
+        <member name="M:Networking.Bits.GetBoolean(System.Byte,System.Int32)">
+            <summary>
+            获取指定位置的bit[1=true,0=false]
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-7]</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.GetByte(System.Byte,System.Int32,System.Int32)">
+            <summary>
+            获取指定位置的bits组成的<see cref="T:System.Byte"/>
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-7]</param>
+            <param name="bitLength">bit的长度[0-8]</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.GetUInt16(System.UInt16,System.Int32,System.Int32)">
+            <summary>
+            获取指定位置的bits组成的<see cref="T:System.UInt16"/>
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-15]</param>
+            <param name="bitLength">bit的长度[0-16]</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.GetUInt32(System.UInt32,System.Int32,System.Int32)">
+            <summary>
+            获取指定位置的bits组成的<see cref="T:System.UInt32"/>
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-31]</param>
+            <param name="bitLength">bit的长度[0-32]</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.SetBoolean(System.Byte,System.Int32,System.Boolean)">
+            <summary>
+            设置指定位置的bit[1=true,0=false]
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-7]</param>
+            <param name="value">bit的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.SetByte(System.Byte,System.Int32,System.Int32,System.Byte)">
+            <summary>
+            设置指定位置的bits
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-7]</param>
+            <param name="bitLength">bit的长度[0-8]</param>
+            <param name="value">值[8-bitLength~7]bits</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.SetUInt16(System.UInt16,System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            设置指定位置的bits
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-15]</param>
+            <param name="bitLength">bit的长度[0-16]</param>
+            <param name="value">值[16-bitLength~15]bits</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Bits.SetUInt32(System.UInt32,System.Int32,System.Int32,System.UInt32)">
+            <summary>
+            设置指定位置的bits
+            </summary>
+            <param name="this">this</param>
+            <param name="bitIndex">bit的索引[0-31]</param>
+            <param name="bitLength">bit的长度[0-32]</param>
+            <param name="value">值[32-bitLength~31]bits</param>
+            <returns></returns>
+        </member>
+        <member name="T:Networking.IPAddress">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+        <member name="T:Networking.IPAddress.Layout">
+            <summary>
+            首部-布局信息
+            </summary>
+        </member>
+        <member name="F:Networking.IPAddress.Layout.V4Length">
+            <summary>
+            V4地址长度=4
+            </summary>
+        </member>
+        <member name="F:Networking.IPAddress.Layout.V6Length">
+            <summary>
+            V6地址长度=16
+            </summary>
+        </member>
+        <member name="P:Networking.IPAddress.Version">
+            <summary>
+            获取版本
+            </summary>
+        </member>
+        <member name="M:Networking.IPAddress.ToString">
+            <summary>
+            <para>IPv4 127.0.0.1</para>
+            <para>IPv6 127.0.0.1</para>
+            </summary>
+        </member>
+        <member name="T:Networking.IPVersion">
+            <summary>
+            IP版本
+            </summary>
+        </member>
+        <member name="F:Networking.IPVersion.IPv4">
+            <summary>
+            IPv4
+            </summary>
+        </member>
+        <member name="F:Networking.IPVersion.IPv6">
+            <summary>
+            IPv6
+            </summary>
+        </member>
+        <member name="T:Networking.MACAddress">
+            <summary>
+            MAC地址
+            </summary>
+        </member>
+        <member name="T:Networking.MACAddress.Layout">
+            <summary>
+            首部-布局信息
+            </summary>
+        </member>
+        <member name="F:Networking.MACAddress.Layout.Length">
+            <summary>
+            MAC地址长度=6
+            </summary>
+        </member>
+        <member name="M:Networking.MACAddress.ToString">
+            <summary>
+            12:34:56:67:89:AB
+            </summary>
+        </member>
+        <member name="T:Networking.Octets">
+            <summary>
+            八位字节组
+            <see href="https://en.wikipedia.org/wiki/Octet_(computing)"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Octets.IsLittleEndian">
+            <summary>
+            是否小端字节序
+            <para></para>
+            <para>       0xA1B2C3D4                                           </para>
+            <para>|  -  + 4 octets  +     |                                   </para>
+            <para>|  -  +  -  +  -  +  -  |                                   </para>
+            <para>|  0     1     2     3  | 内存增长方向                        </para>
+            <para>|  -  +  -  +  -  +  -  |                                   </para>
+            <para>| 0xA1  0xB2  0xC3  0xD4| 大端模式/网络字节序[高位字节存储在低位] </para>
+            <para>|  -  +  -  +  -  +  -  |                                   </para>
+            <para>| 0xD4  0xC3  0xB2  0xA1| 小端模式/主机字节序[高位字节存储在高位] </para>
+            <para>|  -  +  -  +  -  +  -  |                                   </para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="P:Networking.Octets.Bytes">
+            <summary>
+            字节数据
+            </summary>
+        </member>
+        <member name="P:Networking.Octets.Length">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="M:Networking.Octets.GetBoolean(System.Int32,System.Int32)">
+            <summary>
+            获取指定位置的bit[1=true,0=false]
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引[0-7]</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetByte(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取<see cref="T:System.Byte"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引</param>
+            <param name="bitLength">bit的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetByte(System.Int32)">
+            <summary>
+            获取<see cref="T:System.Byte"/>
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetBytes(System.Int32)">
+            <summary>
+            读取Bytes
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetBytes(System.Int32,System.Int32)">
+            <summary>
+            读取Bytes
+            </summary>
+            <param name="index">索引</param>
+            <param name="length">长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetUInt16(System.Int32)">
+            <summary>
+            获取<see cref="T:System.UInt16"/>
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetUInt16(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取<see cref="T:System.UInt16"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引</param>
+            <param name="bitLength">bit的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetUInt32(System.Int32)">
+            <summary>
+            获取<see cref="T:System.UInt32"/>
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetUInt32(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取<see cref="T:System.UInt32"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引</param>
+            <param name="bitLength">bit的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetMAC(System.Int32)">
+            <summary>
+            获取<see cref="T:Networking.MACAddress"/>
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetIPv4(System.Int32)">
+            <summary>
+            获取IPv4<see cref="T:Networking.IPAddress"/>
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.GetIPv6(System.Int32)">
+            <summary>
+            获取IPv6<see cref="T:Networking.IPAddress"/>
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetBoolean(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            设置指定位置的bit[1=true,0=false]
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引[0-7]</param>
+            <param name="value">bit的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetByte(System.Int32,System.Int32,System.Int32,System.Byte)">
+            <summary>
+            设置<see cref="T:System.Byte"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引</param>
+            <param name="bitLength">bit的长度</param>
+            <param name="value">byte的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetByte(System.Int32,System.Byte)">
+            <summary>
+            设置<see cref="T:System.Byte"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="byteValue">byte的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetUInt16(System.Int32,System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            设置<see cref="T:System.UInt16"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引</param>
+            <param name="bitLength">bit的长度</param>
+            <param name="value">UInt16的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetUInt16(System.Int32,System.UInt16)">
+            <summary>
+            设置<see cref="T:System.UInt16"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetUInt32(System.Int32,System.Int32,System.Int32,System.UInt32)">
+            <summary>
+            设置<see cref="T:System.UInt32"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="bitIndex">bit的索引</param>
+            <param name="bitLength">bit的长度</param>
+            <param name="value">UInt32的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetUInt32(System.Int32,System.UInt32)">
+            <summary>
+            设置<see cref="T:System.UInt32"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetMAC(System.Int32,Networking.MACAddress)">
+            <summary>
+            设置<see cref="T:Networking.MACAddress"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetIPv4(System.Int32,Networking.IPAddress)">
+            <summary>
+            设置IPv4<see cref="T:Networking.IPAddress"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetIPv6(System.Int32,Networking.IPAddress)">
+            <summary>
+            设置IPv6<see cref="T:Networking.IPAddress"/>
+            </summary>
+            <param name="index">索引</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.SetBytes(System.Int32,System.Int32,System.Memory{System.Byte})">
+            <summary>
+            读取或写入
+            </summary>
+            <param name="index">索引</param>
+            <param name="length">长度</param>
+            <param name="bytes">bytes</param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Octets.ToString">
+            <summary>
+            12-34-56-78-89-AB-CD-EF
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

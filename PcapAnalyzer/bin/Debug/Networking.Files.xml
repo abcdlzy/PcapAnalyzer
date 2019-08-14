@@ -1,0 +1,1177 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Networking.Files</name>
+    </assembly>
+    <members>
+        <member name="T:Networking.Files.IPacket">
+            <summary>
+            数据包接口
+            </summary>
+        </member>
+        <member name="P:Networking.Files.IPacket.DataLinkType">
+            <summary>
+            链路层类型
+            </summary>
+        </member>
+        <member name="P:Networking.Files.IPacket.Payload">
+            <summary>
+            有效负载
+            </summary>
+        </member>
+        <member name="P:Networking.Files.IPacket.TimestampNanosecond">
+            <summary>
+            UNIX时间戳-纳秒
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PacketDataLinkType">
+            <summary>
+            数据链路的类型
+            <see href="http://www.tcpdump.org/linktypes.html"/>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PacketDataLinkType.Null">
+            <summary>
+            null
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PacketDataLinkType.Ethernet">
+            <summary>
+            Ethernet (DIX) II
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PacketDataLinkType.PPP">
+            <summary>
+            Point to Point
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PacketReader">
+            <summary>
+            Packet Reader
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PacketReader.Position">
+            <summary>
+            Position
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PacketReader.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PacketReader.#ctor(System.IO.Stream)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PacketReader.#ctor(System.Byte[])">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PacketReader.ReadPackets">
+            <summary>
+            读取所有数据包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Files.PacketReader.ReadBytes(System.Int32)">
+            <summary>
+            向前读取指定的字节
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Networking.Files.PcapNG.Block">
+            <summary>
+            Block
+            <see href="https://pcapng.github.io/pcapng/#section_block"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.Block.IsPacket">
+            <summary>
+            是否是数据包
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.Block.InterfaceId">
+            <summary>
+            InterfaceId
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.Block.InterfaceDescription">
+            <summary>
+            Interface Description Block
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.Block.SectionHeader">
+            <summary>
+            Section Header Block
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.Block.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.Block.TotalLength">
+            <summary>
+            Total Length
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.Block.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_block"/>
+            <para></para>
+            <para>|                    General Block Structure                    |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para>|           Block Type (4 octets = 32 bits)                     |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Body : variable length, padded to 32 bits     |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.Block.Layout.TypeBegin">
+            <summary>
+            Type-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.Block.Layout.TypeEnd">
+            <summary>
+            Type-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.Block.Layout.TotalLengthBegin">
+            <summary>
+            Total Length-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.Block.Layout.TotalLengthLength">
+            <summary>
+            Total Length的长度
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.Block.Layout.TotalLengthEnd">
+            <summary>
+            Total Length-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.Block.Layout.HeaderLength">
+            <summary>
+            头部长度
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.BlockCreator">
+            <summary>
+            <see cref="T:Networking.Files.PcapNG.Block"/>创建者
+            <see cref="T:Networking.Files.PcapNG.Block"/>创建者
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockCreator.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockCreator.BlockTypeMap">
+            <summary>
+            BlockType
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.BlockCreator.Create(Networking.Files.PcapNG.BlockType,System.Boolean,System.Memory{System.Byte})">
+            <summary>
+            创建 <see cref="T:Networking.Files.PcapNG.Block"/> 
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.BlockHeader">
+            <summary>
+            Block Header
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.BlockHeader.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.BlockHeader.TotalLength">
+            <summary>
+            Total Length
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.BlockHeader.From(System.Memory{System.Byte},System.Nullable{System.Boolean})">
+            <summary>
+            创建
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.BlockType">
+            <summary>
+            Block Type
+            <see href="https://pcapng.github.io/pcapng/#section_block_code_registry"/>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.InterfaceDescription">
+            <summary>
+            Interface Description Block
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.Packet">
+            <summary>
+            Packet Block
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.SimplePacket">
+            <summary>
+            Simple Packet Block 
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.NameResolution">
+            <summary>
+            Name Resolution Block
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.InterfaceStatistics">
+            <summary>
+            Interface Statistics Block
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.EnhancedPacket">
+            <summary>
+            Enhanced Packet Block
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.BlockType.SectionHeader">
+            <summary>
+            Section Header Block
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.EnhancedPacketBlock">
+            <summary>
+            Enhanced Packet Block
+            <see href="https://pcapng.github.io/pcapng/#section_epb"/>
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.EnhancedPacketBlock.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.EnhancedPacketBlock.InterfaceId">
+            <summary>
+            Interface Id
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.EnhancedPacketBlock.CapturedLength">
+            <summary>
+            捕获长度
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.EnhancedPacketBlock.OriginalLength">
+            <summary>
+            原始长度
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.EnhancedPacketBlock.DataLinkType">
+            <summary>
+            <see cref="P:Networking.Files.IPacket.DataLinkType"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.EnhancedPacketBlock.TimestampNanosecond">
+            <summary>
+            <see cref="P:Networking.Files.IPacket.TimestampNanosecond"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.EnhancedPacketBlock.Payload">
+            <summary>
+            <see cref="P:Networking.Files.IPacket.Payload"/>
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.EnhancedPacketBlock.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_epb"/>
+            <para></para>
+            <para>|                  Enhanced Packet Block (EPB)                  |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Type = 0x00000006                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Interface ID                                        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Timestamp (High)                                    |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Timestamp (Low)                                     |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Captured Packet Length                              |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Original Packet Length                              |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Packet Data                                         |</para>
+            <para>|                                                               |</para>
+            <para>|                                                               |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Options (variable)                                  |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.InterfaceIdBegin">
+            <summary>
+            Interface ID-起始位置=8
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.InterfaceIdEnd">
+            <summary>
+            Interface ID-结束位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.TimestampHighBegin">
+            <summary>
+            Timestamp (High)-起始位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.TimestampHighEnd">
+            <summary>
+            Timestamp (High)-结束位置=16
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.TimestampLowBegin">
+            <summary>
+            Timestamp (Low)-起始位置=16
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.TimestampLowEnd">
+            <summary>
+            Timestamp (Low)-结束位置=20
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.CapturedLengthBegin">
+            <summary>
+            Captured Length-起始位置=20
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.CapturedLengthEnd">
+            <summary>
+            Captured Length-结束位置=24
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.OriginalLengthBegin">
+            <summary>
+            Original Length-起始位置=24
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.OriginalLengthEnd">
+            <summary>
+            Original Length-结束位置=28
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.HeaderLength">
+            <summary>
+            Header Length=28
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.EnhancedPacketBlock.Layout.HeaderTotalLength">
+            <summary>
+            Header Total Length=32
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.InterfaceDescriptionBlock">
+            <summary>
+            Interface Description Block
+            <see href="https://pcapng.github.io/pcapng/#section_idb"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.InterfaceDescriptionBlock.DataLinkType">
+            <summary>
+            数据链路类型
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.InterfaceDescriptionBlock.MaxCapturedLength">
+            <summary>
+            数据包最大长度
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.InterfaceDescriptionBlock.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_idb"/>
+            <para></para>
+            <para>|               Interface Description Block (IDB)               |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Type = 0x00000001                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para>|           LinkType            |         Reserved              |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           SnapLen                                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Options (variable)                                  |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceDescriptionBlock.Layout.DataLinkTypeBegin">
+            <summary>
+            LinkType-起始位置=0
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceDescriptionBlock.Layout.DataLinkTypeEnd">
+            <summary>
+            LinkType-结束位置=2
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceDescriptionBlock.Layout.MaxCapturedLengthBegin">
+            <summary>
+            Captured Length-起始位置=4
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceDescriptionBlock.Layout.MaxCapturedLengthEnd">
+            <summary>
+            Captured Length-结束位置=8
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceDescriptionBlock.Layout.HeaderLength">
+            <summary>
+            Header Length=12
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.InterfaceStatisticsBlock">
+            <summary>
+            Interface Statistics Block
+            <see href="https://pcapng.github.io/pcapng/#section_isb"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.InterfaceStatisticsBlock.InterfaceId">
+            <summary>
+            Interface Id
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.InterfaceStatisticsBlock.TimestampNanosecond">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_isb"/>
+            <para></para>
+            <para>|               Interface Statistics Block (ISB)                |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Type = 0x00000005                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Interface ID                                        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Timestamp (High)                                    |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Timestamp (Low)                                     |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Options (variable)                                  |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.InterfaceIdBegin">
+            <summary>
+            Interface ID-起始位置=8
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.InterfaceIdEnd">
+            <summary>
+            Interface ID-结束位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.TimestampHighBegin">
+            <summary>
+            Timestamp (High)-起始位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.TimestampHighEnd">
+            <summary>
+            Timestamp (High)-结束位置=16
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.TimestampLowBegin">
+            <summary>
+            Timestamp (Low)-起始位置=16
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.TimestampLowEnd">
+            <summary>
+            Timestamp (Low)-结束位置=20
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.HeaderLength">
+            <summary>
+            Header Length=20
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.InterfaceStatisticsBlock.Layout.HeaderTotalLength">
+            <summary>
+            Header Total Length=24
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.NameResolutionBlock">
+            <summary>
+            Name Resolution Block
+            <see href="https://pcapng.github.io/pcapng/#section_nrb"/>
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.NameResolutionBlock.GetRecords">
+            <summary>
+            读取<see cref="T:Networking.Files.PcapNG.NameResolutionBlock.Record"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Networking.Files.PcapNG.NameResolutionBlock.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_nrb"/>
+            <para></para>
+            <para>|                  Name Resolution Block (NRB)                  |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Type = 0x00000004                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|  Record Type                  | Record Value Length           |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|  Record Value : variable length, padded to 32 bits            |</para>
+            <para>|                                                               |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|                                                               |</para>
+            <para>|                    . . . other records . . .                  |</para>
+            <para>|                                                               |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|  Record Type = nrb_record_end | Record Value Length = 0       |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Options (variable)                                  |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.Layout.RecordTypeBegin">
+            <summary>
+            Record Type 起始位置=0
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.Layout.RecordTypeEnd">
+            <summary>
+            Record Type 结束位置=2
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.Layout.RecordValueBegin">
+            <summary>
+            Record Value 起始位置=2
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.Layout.RecordValueEnd">
+            <summary>
+            Record Value 结束位置=4
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.Layout.RecordHeaderLength">
+            <summary>
+            Record Header Length=4
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.NameResolutionBlock.Record">
+            <summary>
+            Name Resolution Block Record
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.NameResolutionBlock.Record.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.NameResolutionBlock.Record.ValueLength">
+            <summary>
+            Value Length
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.NameResolutionBlock.Record.IP">
+            <summary>
+            IP
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.NameResolutionBlock.Record.Host">
+            <summary>
+            Host
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.NameResolutionBlock.RecordType">
+            <summary>
+            Name Resolution Block Record Type
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.RecordType.End">
+            <summary>
+            结束
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.RecordType.IPv4">
+            <summary>
+            IPv4
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.NameResolutionBlock.RecordType.IPv6">
+            <summary>
+            IPv6
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.PcapNGFileReader">
+            <summary>
+            *.pcapng文件
+            <see href="https://pcapng.github.io/pcapng"/>
+            <see href="https://wiki.wireshark.org/Development/PcapNg"/>
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.PcapNGFileReader.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.PcapNGFileReader.#ctor(System.IO.Stream)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.PcapNGFileReader.#ctor(System.Byte[])">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.PcapNGFileReader.ReadBlocks">
+            <summary>
+            读取<see cref="T:Networking.Files.PcapNG.Block"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Files.PcapNG.PcapNGFileReader.ReadPackets">
+            <summary>
+            读取<see cref="T:Networking.Files.IPacket"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Networking.Files.PcapNG.SectionHeaderBlock">
+            <summary>
+            Section Header Block
+            <see href="https://pcapng.github.io/pcapng/#section_shb"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SectionHeaderBlock.MagicNumber">
+            <summary>
+            Magic Number
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SectionHeaderBlock.MajorVersion">
+            <summary>
+            Major Version
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SectionHeaderBlock.MinorVersion">
+            <summary>
+            Minor Version
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SectionHeaderBlock.SectionLength">
+            <summary>
+            数据包最大长度
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.SectionHeaderBlock.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_shb"/>
+            <para></para>
+            <para>|                  Section Header Block (SHB)                   |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Type = 0x0A0D0D0A                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Byte-Order Magic (4 octets = 32 bits)               |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Major Version       |         Minor Version         |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Section Length (4 octets = 32 bits)                 |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Options (variable)                                  |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MagicNumberBegin">
+            <summary>
+            Byte-Order Magic-起始位置=8
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MagicNumberLength">
+            <summary>
+            Byte-Order Magic-长度=4
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MagicNumberEnd">
+            <summary>
+            Byte-Order Magic-结束位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MajorVersionBegin">
+            <summary>
+            Major Version-起始位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MajorVersionEnd">
+            <summary>
+            Major Version-结束位置=14
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MinorVersionBegin">
+            <summary>
+            Minor Version-起始位置=14
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.MinorVersionEnd">
+            <summary>
+            Minor Version-结束位置=16
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.SectionLengthBegin">
+            <summary>
+            Section Length-起始位置=16
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.SectionLengthEnd">
+            <summary>
+            Section Length-结束位置=20
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SectionHeaderBlock.Layout.HeaderLength">
+            <summary>
+            Header Length=20
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.SimplePacketBlock">
+            <summary>
+            Simple Packet Block
+            <see href="https://pcapng.github.io/pcapng/#section_spb"/>
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.SimplePacketBlock.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SimplePacketBlock.InterfaceId">
+            <summary>
+            Interface Id
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SimplePacketBlock.OriginalLength">
+            <summary>
+            原始长度
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SimplePacketBlock.DataLinkType">
+            <summary>
+            <see cref="P:Networking.Files.IPacket.DataLinkType"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SimplePacketBlock.TimestampNanosecond">
+            <summary>
+            <see cref="P:Networking.Files.IPacket.TimestampNanosecond"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.PcapNG.SimplePacketBlock.Payload">
+            <summary>
+            <see cref="P:Networking.Files.IPacket.Payload"/>
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.SimplePacketBlock.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://pcapng.github.io/pcapng/#section_spb"/>
+            <para></para>
+            <para>|                  Simple Packet Block (SPB)                    |</para>
+            <para>|- - - - - - - -+- - - 32 bits(4 octets) - - - -+- - - - - - - -|</para>
+            <para>|0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7+0 1 2 3 4 5 6 7|</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Type = 0x00000003                             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits)             |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Original Packet Length                              |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Packet Data                                         |</para>
+            <para>|                                                               |</para>
+            <para>|                                                               |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para>
+            <para>|           Block Total Length (4 octets = 32 bits) Copy        |</para>
+            <para>|- - - - - - - -+- - - - - - - -+- - - - - - - -+- - - - - - - -|</para> 
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SimplePacketBlock.Layout.OriginalLengthBegin">
+            <summary>
+            Original Length-起始位置=8
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SimplePacketBlock.Layout.OriginalLengthEnd">
+            <summary>
+            Original Length-结束位置=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SimplePacketBlock.Layout.HeaderLength">
+            <summary>
+            Header Length=12
+            </summary>
+        </member>
+        <member name="F:Networking.Files.PcapNG.SimplePacketBlock.Layout.HeaderTotalLength">
+            <summary>
+            Header Total Length=16
+            </summary>
+        </member>
+        <member name="T:Networking.Files.PcapNG.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Networking.Files.PcapNG.Timestamp.ToTimestampNanosecond(System.Boolean,System.Boolean,System.ReadOnlySpan{System.Byte})">
+            <summary>
+            
+            </summary>
+            <param name="isLittleEndian"></param>
+            <param name="isNanosecnod"></param>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Networking.Files.Pcap.PcapFileHeader">
+            <summary>
+            *.pcap 文件首部
+            <see href="https://wiki.wireshark.org/Development/LibpcapFileFormat"/>
+            </summary>
+        </member>
+        <member name="M:Networking.Files.Pcap.PcapFileHeader.#ctor(System.Byte[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="headerBytes">首部Byte[]</param>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileHeader.DataLinkType">
+            <summary>
+            数据链路类型
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileHeader.MagicNumber">
+            <summary>
+            Magic Number
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileHeader.MajorVersion">
+            <summary>
+            Major Version
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileHeader.MinorVersion">
+            <summary>
+            Minor Version
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileHeader.MaxCapturedLength">
+            <summary>
+            数据包最大长度
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileHeader.TimestampMicrosecondPartIsNanosecond">
+            <summary>
+            是否是纳秒
+            </summary>
+        </member>
+        <member name="T:Networking.Files.Pcap.PcapFileHeader.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://wiki.wireshark.org/Development/LibpcapFileFormat"/>
+            <para></para>
+            <para>typedef struct pcap_hdr_s {                                               </para>
+            <para>    guint32 magic_number;   // magic number                               </para>
+            <para>    guint16 version_major;  // major version number                       </para>
+            <para>    guint16 version_minor;  // minor version number                       </para>
+            <para>    gint32  thiszone;       // GMT to local correction                    </para>
+            <para>    guint32 sigfigs;        // accuracy of timestamps                     </para>
+            <para>    guint32 snaplen;        // max length of captured packets, in octets  </para>
+            <para>    guint32 network;        // data link type                             </para>
+            <para>} pcap_hdr_t;                                                             </para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MagicNumberBegin">
+            <summary>
+            Major Number-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MagicNumberEnd">
+            <summary>
+            Major Number-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MajorVersionBegin">
+            <summary>
+            Major Version-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MajorVersionEnd">
+            <summary>
+            Major Version-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MinorVersionBegin">
+            <summary>
+            Minor Version-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MinorVersionEnd">
+            <summary>
+            Minor Version-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MaxCapturedLengthBegin">
+            <summary>
+            数据包最大的长度-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.MaxCapturedLengthEnd">
+            <summary>
+            数据包最大的长度-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.DataLinkTypeBegin">
+            <summary>
+            数据链路类型-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.DataLinkTypeEnd">
+            <summary>
+            数据链路类型-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapFileHeader.Layout.HeaderLength">
+            <summary>
+            首部长度
+            </summary>
+        </member>
+        <member name="T:Networking.Files.Pcap.PcapFileReader">
+            <summary>
+            *.pcap文件
+            <see href="https://wiki.wireshark.org/Development/LibpcapFileFormat"/>
+            <see href="https://wiki.wireshark.org/SampleCaptures"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapFileReader.Header">
+            <summary>
+            文件首部
+            </summary>
+        </member>
+        <member name="M:Networking.Files.Pcap.PcapFileReader.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.Pcap.PcapFileReader.#ctor(System.IO.Stream)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.Pcap.PcapFileReader.#ctor(System.Byte[])">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Networking.Files.Pcap.PcapFileReader.ReadPackets">
+            <summary>
+            读取所有数据包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Networking.Files.Pcap.PcapPacket">
+            <summary>
+            Packet (Record)
+            <see href="https://wiki.wireshark.org/Development/LibpcapFileFormat"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacket.Header">
+            <summary>
+            Packet首部
+            </summary>
+        </member>
+        <member name="M:Networking.Files.Pcap.PcapPacket.#ctor(Networking.Files.Pcap.PcapPacketHeader,System.Memory{System.Byte})">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacket.DataLinkType">
+            <summary>
+            链路层类型
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacket.Payload">
+            <summary>
+            有效负载
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacket.TimestampNanosecond">
+            <summary>
+            UNIX时间戳-纳秒
+            </summary>
+        </member>
+        <member name="T:Networking.Files.Pcap.PcapPacketHeader">
+            <summary>
+            Packet (Record) 首部
+            <see href="https://wiki.wireshark.org/Development/LibpcapFileFormat"/>
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacketHeader.Header">
+            <summary>
+            文件首部
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacketHeader.TimestampSecondPart">
+            <summary>
+            时间戳-秒部分
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacketHeader.TimestampMicrosecondPart">
+            <summary>
+            时间戳-微妙部分
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacketHeader.CapturedLength">
+            <summary>
+            捕获的长度
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacketHeader.OriginalLength">
+            <summary>
+            原始长度
+            </summary>
+        </member>
+        <member name="P:Networking.Files.Pcap.PcapPacketHeader.TimestampNanosecond">
+            <summary>
+            UNIX时间戳-精度纳秒
+            </summary>
+        </member>
+        <member name="T:Networking.Files.Pcap.PcapPacketHeader.Layout">
+            <summary>
+            首部-布局信息
+            <see href="https://wiki.wireshark.org/Development/LibpcapFileFormat"/>
+            <para></para>
+            <para>typedef struct pcaprec_hdr_s {                                     </para>
+            <para>    guint32 ts_sec;   // timestamp seconds                         </para>
+            <para>    guint32 ts_usec;  // timestamp microseconds                    </para>
+            <para>    guint32 incl_len; // number of octets of packet saved in file  </para>
+            <para>    guint32 orig_len; // actual length of packet                   </para>
+            <para>} pcaprec_hdr_t;                                                   </para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.TimestampSecondPartBegin">
+            <summary>
+            时间戳-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.TimestampSecondPartEnd">
+            <summary>
+            时间戳-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.TimestampMicrosecondPartBegin">
+            <summary>
+            时间戳-微妙-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.TimestampMicrosecondPartEnd">
+            <summary>
+            时间戳-微妙-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.CapturedLengthBegin">
+            <summary>
+            保存的长度-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.CapturedLengthEnd">
+            <summary>
+            保存的长度-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.OriginalLengthBegin">
+            <summary>
+            原始长度-起始位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.OriginalLengthEnd">
+            <summary>
+            原始长度-结束位置
+            </summary>
+        </member>
+        <member name="F:Networking.Files.Pcap.PcapPacketHeader.Layout.HeaderLength">
+            <summary>
+            首部长度
+            </summary>
+        </member>
+        <member name="T:Networking.Files.UInt64Extensions">
+            <summary>
+            <see cref="T:System.UInt64"/>的扩展方法
+            </summary>
+        </member>
+        <member name="M:Networking.Files.UInt64Extensions.ToDateTimeOffset(System.UInt64)">
+            <summary>
+            获取<see cref="T:System.DateTimeOffset"/>
+            </summary>
+            <param name="this"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Networking.Files.UInt64Extensions.ToDateTimeOffsetString(System.UInt64)">
+            <summary>
+            获取<see cref="T:System.DateTimeOffset"/>的ToString
+            </summary>
+            <param name="this"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
